@@ -1,0 +1,21 @@
+.App {
+  text-align: center;
+}
+
+.Nav_link {
+  text-decoration: none;
+  color: black;
+}
+
+.contact-list {
+  list-style: none;
+  .link {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.ContactPreview {
+  background-color: rgb(74, 209, 209);
+  cursor: pointer;
+}
