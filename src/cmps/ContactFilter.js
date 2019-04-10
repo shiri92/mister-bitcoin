@@ -7,6 +7,7 @@ export default class Chart extends Component {
     handleSearch = async (ev) => {
         let filterBy = { term: ev.target.value }
         this.props.filter(filterBy);
+        console.log('hey')
     }
 
     render() {
