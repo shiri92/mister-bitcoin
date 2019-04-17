@@ -1,5 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
 .App {
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  .links-container {
+    margin: 10px;
+  }
 }
 
 .Nav_link {
@@ -7,7 +24,30 @@
   color: black;
 }
 
-.contact-list {
+.activeRoute {
+  color: red;
+}
+
+.ContactPage {
+  max-width: 500px;
+  margin: 0 auto;
+  .top-container {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+.ContactFilter {
+  input {
+    padding: 5px;
+    margin: 20px;
+    border-radius: 2px;
+  }
+}
+
+.ContactList {
+  max-width: 500px;
+  margin: 0 auto;
   list-style: none;
   .link {
     text-decoration: none;
@@ -16,6 +56,94 @@
 }
 
 .ContactPreview {
-  background-color: rgb(74, 209, 209);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(197, 238, 238);
   cursor: pointer;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 160px;
+  .icons-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    img {
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.ContactDetailsPage {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  .btns-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+    .link {
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+  .contact-details {
+    text-align: left;
+    padding: 10px 40px;
+    div {
+      margin-top: 20px;
+    }
+  }
+  .TransferFund {
+    background-color: rgb(72, 150, 240);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 30px 10px 0 30px;
+    p {
+      margin-bottom: 20px;
+    }
+    div {
+      input {
+        outline: 0;
+        border-width: 0 0 2px;
+        background-color: rgb(72, 150, 240);
+      }
+      button {
+        padding: 3px;
+        margin: 5px;
+      }
+    }
+  }
+}
+
+.MovesList {
+  background-color: rgb(236, 231, 231);
+  padding: 20px 30px;
+  margin: 30px 10px;
+  border-radius: 5px;
+  div {
+    margin: 30px 0;
+  }
+}
+
+.SignupPage {
+  form {
+    margin-top: 100px;
+    input {
+      margin-bottom: 50px;
+      margin-top: 50px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    button {
+      width: 60px;
+      height: 20px;
+    }
+  }
 }

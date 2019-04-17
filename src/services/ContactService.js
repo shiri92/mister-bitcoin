@@ -1,3 +1,4 @@
+import UtilService from './UtilService.js'
 const contacts = [
   {
     _id: "5a56640269f443a5d64b32ca",
@@ -115,6 +116,8 @@ const contacts = [
   }
 ];
 
+const CONTACTS_KEY = 'Contacts'
+
 function sort(arr) {
   return arr.sort((a, b) => {
     if (a.name.toLocaleLowerCase() < b.name.toLocaleLowerCase()) {
@@ -130,7 +133,12 @@ function sort(arr) {
 
 function getContacts(filterBy = null) {
   return new Promise((resolve, reject) => {
-    var contactsToReturn = contacts;
+    if (UtilService.loadFromStorage(CONTACTS_KEY)) {
+      var contactsToReturn = UtilService.loadFromStorage(CONTACTS_KEY);
+    } else {
+      contactsToReturn = contacts;
+      UtilService.saveToStorage(CONTACTS_KEY, contacts)
+    }
     if (filterBy && filterBy.term) {
       contactsToReturn = filter(filterBy.term);
     }
@@ -140,37 +148,41 @@ function getContacts(filterBy = null) {
 
 function getContactById(id) {
   return new Promise((resolve, reject) => {
-    const contact = contacts.find(contact => contact._id === id);
+    const contact = UtilService.loadFromStorage(CONTACTS_KEY).find(contact => contact._id === id);
     contact ? resolve(contact) : reject(`Contact id ${id} not found!`);
   });
 }
 
 function deleteContact(id) {
   return new Promise((resolve, reject) => {
-    const index = contacts.findIndex(contact => contact._id === id);
+    let currContacts = UtilService.loadFromStorage(CONTACTS_KEY)
+    const index = currContacts.findIndex(contact => contact._id === id);
     if (index !== -1) {
-      contacts.splice(index, 1);
+      currContacts.splice(index, 1);
     }
-
-    resolve(contacts);
+    resolve(currContacts);
+    UtilService.saveToStorage(CONTACTS_KEY, currContacts)
   });
 }
 
 function _updateContact(contact) {
   return new Promise((resolve, reject) => {
-    const index = contacts.findIndex(c => contact._id === c._id);
+    const index = UtilService.loadFromStorage(CONTACTS_KEY).findIndex(c => contact._id === c._id);
     if (index !== -1) {
       contacts[index] = contact;
     }
     resolve(contact);
+    UtilService.saveToStorage(CONTACTS_KEY, contacts)
   });
 }
 
 function _addContact(contact) {
   return new Promise((resolve, reject) => {
     contact._id = _makeId();
-    contacts.push(contact);
+    let currContacts = UtilService.loadFromStorage(CONTACTS_KEY);
+    currContacts.push(contact);
     resolve(contact);
+    UtilService.saveToStorage(CONTACTS_KEY, currContacts);
   });
 }
 

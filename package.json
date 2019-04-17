@@ -1,10 +1,13 @@
 {
+  "homepage": "https://shiri92.github.io/mister-bitcoin",
   "name": "mister-bitcoin",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.3",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -29,6 +32,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "homepage": "https://shiri92.github.io/mister-bitcoin"
+  ]
 }
