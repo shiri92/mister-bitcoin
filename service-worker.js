@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/mister-bitcoin/precache-manifest.17e2ea5a4e171e5a2b8dce28f0f0ef9b.js"
+  "/mister-bitcoin/precache-manifest.65c4ca4699de615e6f3be2b9fb78d3d9.js"
 );
 
 workbox.clientsClaim();
