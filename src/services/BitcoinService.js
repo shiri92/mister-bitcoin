@@ -21,24 +21,52 @@ async function getRate(coins) {
   }
 }
 
-async function getMarketPrice() {
+// async function getMarketPrice() {
+//   if (UtilService.loadFromStorage(MARKET_KEY)) {
+//     return Promise.resolve(UtilService.loadFromStorage(MARKET_KEY));
+//   } else {
+//     const api = `https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true`;
+//     let res = await axios.get(api)
+//     UtilService.saveToStorage(MARKET_KEY, res.data);
+//     return res.data;
+//   }
+// }
+
+function getMarketPrice() {
   if (UtilService.loadFromStorage(MARKET_KEY)) {
     return Promise.resolve(UtilService.loadFromStorage(MARKET_KEY));
-  } else {
+  }
+  else {
     const api = `https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true`;
-    let res = await axios.get(api)
-    UtilService.saveToStorage(MARKET_KEY, res.data);
-    return res.data;
+    return axios.get(api)
+      .then(stats => {
+        UtilService.saveToStorage(MARKET_KEY, stats);
+        return stats;
+      });
   }
 }
 
-async function getConfirmedTransactions() {
+function getConfirmedTransactions() {
   if (UtilService.loadFromStorage(TRANSACTIONS_KEY)) {
     return Promise.resolve(UtilService.loadFromStorage(TRANSACTIONS_KEY));
-  } else {
+  }
+  else {
     const api = `https://api.blockchain.info/charts/n-transactions?timespan=5months&format=json&cors=true`;
-    let res = await axios.get(api)
-    UtilService.saveToStorage(TRANSACTIONS_KEY, res.data);
-    return res.data;
+    return axios.get(api)
+      .then(stats => {
+        UtilService.saveToStorage(TRANSACTIONS_KEY, stats);
+        return stats;
+      });
   }
 }
+
+// async function getConfirmedTransactions() {
+//   if (UtilService.loadFromStorage(TRANSACTIONS_KEY)) {
+//     return Promise.resolve(UtilService.loadFromStorage(TRANSACTIONS_KEY));
+//   } else {
+//     const api = `https://api.blockchain.info/charts/n-transactions?timespan=5months&format=json&cors=true`;
+//     let res = await axios.get(api)
+//     UtilService.saveToStorage(TRANSACTIONS_KEY, res.data);
+//     return res.data;
+//   }
+// }

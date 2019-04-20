@@ -19,8 +19,26 @@ class AppStore {
         this.loggedUser = loggedUser;
     }
 
+    async addMove(contact, amount) {
+        let user = UserService.addMove(contact, amount);
+        this.loggedUser = user;
+    }
+
+    async updateUser(newUser) {
+        let user = await UserService.updateUser(newUser);
+        this.loggedUser = user;
+    }
+
     async getRate(coins) {
-        return await BitcoinService.getRate(coins)
+        return await BitcoinService.getRate(coins);
+    }
+
+    async getMarketPrice() {
+        return await BitcoinService.getMarketPrice();
+    }
+
+    async getConfirmedTransactions() {
+        return await BitcoinService.getConfirmedTransactions();
     }
 
     async queryContacts(filterBy) {
@@ -59,12 +77,16 @@ decorate(AppStore,
         contact: observable,
         signUp: action,
         getRate: action,
+        getMarketPrice: action,
+        getConfirmedTransactions: action,
         queryContacts: action,
         queryEmptyContact: action,
         queryContactById: action,
         saveContact: action,
         deleteContact: action,
         queryLoggedUser: action,
+        updateUser: action,
+        addMove: action,
         getLoggedUser: computed
     })
 

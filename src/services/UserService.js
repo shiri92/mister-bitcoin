@@ -130,7 +130,6 @@ function updateUser(user) {
   });
 }
 
-
 function _createUser(userName) {
   return {
     name: userName,

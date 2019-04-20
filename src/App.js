@@ -68,7 +68,7 @@ class App extends Component {
             {/* <Route exact path="/contact" render={() => this.state.isLogin ? (<ContactPage />) : (<Redirect to="/signup" />)} /> */}
             <Route exact strict path="/contact/edit/:id?" render={props => this.state.isLogin ? (<ContactEditPage {...props} store={AppStore} />) : (<Redirect to="/signup" />)} />
             <Route exact strict path="/contact/:id" render={props => this.state.isLogin ? (<ContactDetailsPage {...props} store={AppStore} />) : (<Redirect to="/signup" />)} />
-            <Route exact path="/statistic" render={props => this.state.isLogin ? (<StatisticPage {...props} />) : (<Redirect to="/signup" />)} />
+            <Route exact path="/statistic" render={props => this.state.isLogin ? (<StatisticPage {...props} store={AppStore} />) : (<Redirect to="/signup" />)} />
             <Route path="/signup" render={props => <SignupPage {...props} store={AppStore} />} />
           </Switch>
         </HashRouter>

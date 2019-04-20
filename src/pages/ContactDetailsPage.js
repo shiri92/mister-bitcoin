@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import TrashIcon from '../assets/img/trash.png';
 import TransferFund from '../cmps/TransferFund.js';
 import MovesList from "../cmps/MovesList.js";
-import UserService from "../services/UserService.js";
 
 
 export default class ContactDetailsPage extends Component {
@@ -28,13 +27,15 @@ export default class ContactDetailsPage extends Component {
   }
 
   handleTransfer = async (amount) => {
+
     if (amount > 0) {
       if (amount <= this.state.user.coins) {
         let newUser = this.state.user;
         newUser.coins -= amount;
-        this.setState({ user: UserService.updateUser(newUser) })
-        let user = UserService.addMove(this.state.contact, amount);
-        this.setState({ user: user });
+        await this.props.store.updateUser(newUser);
+        this.setState({ user: this.props.store.loggedUser })
+        await this.props.store.addMove(this.state.contact, amount)
+        this.setState({ user: this.props.store.loggedUser });
       }
     }
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Moment from 'react-moment';
 
 export default class MovesList extends Component {
 
@@ -17,7 +17,7 @@ export default class MovesList extends Component {
                 <hr />
                 {contact && moves.map(move => (
                     <div key={move._id}>
-                        <p>At: {move.createdAt}</p>
+                        <p>At: <Moment format="DD/MM/YYYY HH:MM A">{move.createdAt}</Moment></p>
                         <p>Amount: {move.amount} coins</p>
                     </div>
                 ))}
